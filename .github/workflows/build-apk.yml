@@ -17,16 +17,22 @@ jobs:
         with:
           channel: stable
 
-      - name: Create Flutter project
-        run: flutter create --org com.harmanpest --project-name harman_pest_pro .
+      - name: Create Flutter project (no pub to avoid conflicts)
+        run: flutter create --org com.harmanpest --project-name harmanpestpro --platforms android --no-pub .
 
-      - name: Get dependencies
+      - name: Install dependencies
         run: flutter pub get
+
+      - name: Copy custom code (overwrites defaults)
+        run: |
+          cp -r lib/ lib/
+          echo "Custom code copied"
 
       - name: Build release APK
         run: flutter build apk --release
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
         with:
           name: harman-pest-pro-apk
           path: build/app/outputs/flutter-apk/app-release.apk
