@@ -24,8 +24,8 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Bootstrap project (creates android/ios folders)
-        run: flutter create --org com.harmanpest .   # com.harmanpest is your app's package name
+      -name: Create Flutter project
+        run: flutter create --org com.harmanpest --project-name harman_pest_pro .
 
       - name: Install dependencies
         run: flutter pub get
