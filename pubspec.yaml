@@ -1,0 +1,24 @@
+name: harman_pest_pro
+description: Harman Pest Pro - PA Compliant
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  hive_flutter: ^1.1.0
+  uuid: ^4.2.1
+  pdf: ^3.10.8
+  path_provider: ^2.1.1
+  open_file: ^3.3.2
+  intl: ^0.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
