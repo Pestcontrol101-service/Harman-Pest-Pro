@@ -1,0 +1,37 @@
+name: Build Harman Pest Pro APK
+
+on:
+  workflow_dispatch:   # manual run only
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Create Flutter project (fixes missing android folder)
+        run: flutter create --org com.harmanpest --project-name harman_pest_pro .
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build apk --release
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Harman-Pest-Pro-APK
+          path: build/app/outputs/flutter-apk/app-release.apk
